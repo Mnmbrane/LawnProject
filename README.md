@@ -86,3 +86,54 @@ station at low cost:
 If you want the lowest price while keeping camera + comms reliable, choose
 ESP32-S3 and keep image processing light. If you need real-time or heavier
 vision, use Pi Zero 2 W.
+
+## Hardware + Language
+
+- Primary controller: ESP32-S3 for camera + base station comms.
+- Motor control MCU: STM32 for drive chain, encoders, safety interlocks.
+- Mower-side control code will be written in Rust.
+
+Recommended pairing detail:
+
+- STM32F411CEU6 is a good low-cost motor-control MCU (timers for PWM and
+  encoders, 100 MHz core, 3.3V logic).
+- Link ESP32-S3 <-> STM32 over UART for commands + telemetry (simple and
+  reliable at this scale).
+
+## Drive Layout
+
+Chosen layout: 2-wheel drive (differential) with a front caster.
+
+Why:
+- Simple, low cost, and predictable control.
+- Works well with MOVE/TURN command model.
+
+Tradeoffs:
+- Turn-in-place can scuff grass.
+- Caster can wobble on uneven ground.
+
+## UART vs SPI (ESP32-S3 <-> STM32)
+
+UART:
+- 3 wires (TX, RX, GND), simple wiring and debugging.
+- Asynchronous, forgiving timing, reliable for command + telemetry.
+- Plenty of bandwidth at typical baud rates (115200-921600).
+
+SPI:
+- 4+ wires (SCLK, MOSI, MISO, CS, GND).
+- Faster and lower latency, but more sensitive to timing and wiring.
+- Requires strict master/slave framing and is harder to debug.
+
+Recommendation: use UART unless you truly need higher throughput.
+
+## Telemetry
+
+Telemetry is the mower's status data sent back to the base station. It is
+needed to verify the mower is alive, safe, and executing commands correctly.
+
+Recommended minimal telemetry (0.5-2s interval):
+- Battery voltage
+- Current state (IDLE/MOVING/TURNING/ERROR)
+- Motor fault flag
+- Camera fault flag
+- GPS device fault flag
