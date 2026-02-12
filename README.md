@@ -37,6 +37,19 @@ Binary framing (compact, non-English, fixed fields):
 [SYNC][TYPE][LEN][PAYLOAD...][CRC]
 ```
 
+Field meanings:
+
+- `SYNC`: start-of-frame marker so the receiver can align to a message.
+- `TYPE`: command or response ID (MOVE, TURN, STOP, ACK, NACK, DONE, STATUS).
+- `LEN`: payload size in bytes.
+- `PAYLOAD`: command data (distance, angle, speed tier, or status codes).
+- `CRC`: checksum (CRC-8 or CRC-16) to detect corrupted frames.
+
+Optional but recommended:
+
+- `SEQ`: sequence number in header or payload to prevent duplicates.
+- `FLAGS`: priority or response-required bits (e.g., emergency stop).
+
 Suggested payload fields:
 
 - `MOVE`: int16 distance in centimeters
