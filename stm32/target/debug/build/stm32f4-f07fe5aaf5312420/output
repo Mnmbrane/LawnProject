@@ -1,0 +1,3 @@
+cargo:rustc-link-search=/home/mnmbrane/projects/rust/LawnProject/stm32/target/debug/build/stm32f4-f07fe5aaf5312420/out
+cargo:rerun-if-changed=src/stm32f411/device.x
+cargo:rerun-if-changed=build.rs
