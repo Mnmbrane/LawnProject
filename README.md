@@ -105,21 +105,25 @@ Recommended pairing detail:
 Chosen layout: 2-wheel drive (differential) with a front caster.
 
 Why:
+
 - Simple, low cost, and predictable control.
 - Works well with MOVE/TURN command model.
 
 Tradeoffs:
+
 - Turn-in-place can scuff grass.
 - Caster can wobble on uneven ground.
 
 ## UART vs SPI (ESP32-S3 <-> STM32)
 
 UART:
+
 - 3 wires (TX, RX, GND), simple wiring and debugging.
 - Asynchronous, forgiving timing, reliable for command + telemetry.
 - Plenty of bandwidth at typical baud rates (115200-921600).
 
 SPI:
+
 - 4+ wires (SCLK, MOSI, MISO, CS, GND).
 - Faster and lower latency, but more sensitive to timing and wiring.
 - Requires strict master/slave framing and is harder to debug.
@@ -132,6 +136,7 @@ Telemetry is the mower's status data sent back to the base station. It is
 needed to verify the mower is alive, safe, and executing commands correctly.
 
 Recommended minimal telemetry (0.5-2s interval):
+
 - Battery voltage
 - Current state (IDLE/MOVING/TURNING/ERROR)
 - Motor fault flag
