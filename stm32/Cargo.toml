@@ -8,5 +8,5 @@ cortex-m = "0.7"
 cortex-m-rt = "0.7"
 panic-halt = "0.2"
 
-stm32f4xx-hal = { version = "0.22", features = ["stm32f411"] }
+stm32f4xx-hal = { version = "0.23", features = ["stm32f411"] }
 stm32f4 = { version = "0.15", features = ["stm32f411", "rt"] }

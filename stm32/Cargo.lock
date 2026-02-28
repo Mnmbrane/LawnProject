@@ -154,7 +154,7 @@ dependencies = [
  "cortex-m",
  "cortex-m-rt",
  "panic-halt",
- "stm32f4",
+ "stm32f4 0.15.1",
  "stm32f4xx-hal",
 ]
 
@@ -253,6 +253,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ec0be4795e2f6a28069bec0b5ff3e2ac9bafc99e6a9a7dc3547996c5c816922c"
 
 [[package]]
+name = "rand_core"
+version = "0.9.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "76afc826de14238e6e8c374ddcc1fa19e374fd8dd986b0d2af0d02377261d83c"
+
+[[package]]
 name = "rustc_version"
 version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -295,10 +301,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "stm32f4-staging"
-version = "0.16.1"
+name = "stm32f4"
+version = "0.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "97a6d5e873d8f15406aadd4349b491e28617173a90f152c0635863b1919070af"
+checksum = "c41bd8922df364cb7054cae71a95dcbb32cffd25b5c0f9c00272ef8c82279a65"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
@@ -309,9 +315,9 @@ dependencies = [
 
 [[package]]
 name = "stm32f4xx-hal"
-version = "0.22.1"
+version = "0.23.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a1e9c28bbbb88aae3b1c12e53788a08b1128081a064425520dc0ca29fdd4eb66"
+checksum = "4b5b520616b1ebd18b3ac2d809b8ae47851b14efc63aea7c85d8a45c1daa6fbb"
 dependencies = [
  "bare-metal 1.0.0",
  "cortex-m",
@@ -327,8 +333,9 @@ dependencies = [
  "fugit",
  "fugit-timer",
  "nb 1.1.0",
- "rand_core",
- "stm32f4-staging",
+ "rand_core 0.6.4",
+ "rand_core 0.9.5",
+ "stm32f4 0.16.0",
  "time",
  "void",
 ]
