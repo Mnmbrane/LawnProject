@@ -1,5 +1,13 @@
+[target.'cfg(all(target_arch = "arm", target_os = "none"))']
+# Configured for STM32F411CEU6.
+runner = "probe-rs run --chip STM32F411CEUx"
+
 [build]
 target = "thumbv7em-none-eabihf"
 
-[target.thumbv7em-none-eabihf]
-runner = "probe-run --chip stm32f411"
+[env]
+DEFMT_LOG = "trace"
+
+[alias]
+run-firmware = "run --release --bin firmware"
+build-firmware = "objcopy --release --target thumbv7em-none-eabihf --bin firmware -- -O binary firmware.bin"

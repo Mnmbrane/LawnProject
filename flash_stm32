@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+STM32_DIR="$SCRIPT_DIR/stm32"
+
+cd "$STM32_DIR"
+cargo build-firmware
+dfu-util -a 0 -s 0x08000000:leave -D firmware.bin
