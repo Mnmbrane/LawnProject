@@ -1,0 +1,6 @@
+[workspace]
+members = ["stm32", "esp32"]
+resolver = "2"
+
+[profile.release]
+debug = 2

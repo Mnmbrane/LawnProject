@@ -1,5 +1,64 @@
 # LawnProject
 
+## Project Components
+
+- `stm32`: motor control firmware and low-level hardware control.
+- `esp32`: communication/camera side component scaffold.
+
+Workspace:
+
+```bash
+cargo metadata
+```
+
+## How To Use
+
+From project root:
+
+```bash
+cd /home/mnmbrane/projects/rust/LawnProject
+```
+
+STM32 firmware (`stm32` component):
+
+- Build firmware ELF + `firmware.bin`:
+
+```bash
+cd stm32
+cargo build-firmware
+```
+
+- Run over SWD (`probe-rs` runner from `.cargo/config.toml`):
+
+```bash
+cd stm32
+cargo run-firmware
+```
+
+- Flash over USB DFU (board must be in DFU mode):
+
+```bash
+./flash_stm32
+```
+
+Equivalent manual DFU command:
+
+```bash
+cd stm32
+dfu-util -a 0 -s 0x08000000:leave -D firmware.bin
+```
+
+ESP32 component scaffold (`esp32`):
+
+```bash
+cargo run -p lawn-esp32
+```
+
+Notes:
+
+- Current `stm32/src/bin/firmware.rs` blinks LED at 1s on / 1s off.
+- Workspace-level target directory is `./target/` at repo root.
+
 ## Goals
 
 Build a smart lawnmower controller that accepts compact motion commands from
