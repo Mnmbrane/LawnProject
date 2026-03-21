@@ -3,7 +3,7 @@
 ## Project Components
 
 - `stm32`: motor control firmware and low-level hardware control.
-- `esp32`: communication/camera side component scaffold.
+- `esp32s3`: communication/camera side component scaffold.
 
 Workspace:
 
@@ -48,10 +48,10 @@ cd stm32
 dfu-util -a 0 -s 0x08000000:leave -D firmware.bin
 ```
 
-ESP32 component scaffold (`esp32`):
+ESP32 component scaffold (`esp32s3`):
 
 ```bash
-cargo run -p lawn-esp32
+cargo run -p esp32s3
 ```
 
 Notes:

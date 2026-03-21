@@ -1,6 +1,21 @@
 [workspace]
-members = ["stm32", "esp32"]
+members = ["stm32", "esp32s3"]
 resolver = "2"
 
+[patch.crates-io]
+embassy-time-driver = { path = "../embassy/embassy-time-driver" }
+embassy-time-queue-utils = { path = "../embassy/embassy-time-queue-utils" }
+
+[profile.dev]
+# Rust debug is too slow.
+# For debug builds always builds with some optimization
+opt-level = "s"
+
 [profile.release]
+codegen-units = 1     # LLVM can perform better optimizations using a single thread
 debug = 2
+debug-assertions = false
+incremental = false
+lto = "fat"
+opt-level = "s"
+overflow-checks = false

@@ -9,5 +9,5 @@ target = "thumbv7em-none-eabihf"
 DEFMT_LOG = "trace"
 
 [alias]
-run-firmware = "run --release --bin firmware"
-build-firmware = "objcopy --release --target thumbv7em-none-eabihf --bin firmware -- -O binary firmware.bin"
+run-firmware = "run --release --bin app"
+build-firmware = "objcopy --release --target thumbv7em-none-eabihf --bin app -- -O binary app.bin"

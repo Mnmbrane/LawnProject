@@ -1,0 +1,15 @@
+[target.xtensa-esp32s3-none-elf]
+runner = "espflash flash --monitor --chip esp32s3"
+
+[env]
+ESP_LOG = "info"
+WIFI_SSID = "Victure-3B43_EXT"
+WIFI_PASS = "89db3b43"
+
+[build]
+rustflags = ["-C", "link-arg=-nostartfiles", "-Z", "stack-protector=all"]
+
+target = "xtensa-esp32s3-none-elf"
+
+[unstable]
+build-std = ["alloc", "core"]
